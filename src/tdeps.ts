@@ -79,7 +79,9 @@ async function installClojureToolsDeps(
       .readdirSync(sourceDir)
       .filter(f => f.endsWith('jar'))
     for (let jar of downloadedJars) {
+      core.info(`moving ${jar}`)
       await io.mv(path.join(sourceDir, jar), clojureLibexecDir)
+      core.info(`moved ${jar}`)
     }
     await readWriteAsync(
       path.join(sourceDir, 'clojure'),
